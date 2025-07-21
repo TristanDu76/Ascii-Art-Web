@@ -13,7 +13,6 @@ func main() {
 	http.HandleFunc("/", routeHandler)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	http.HandleFunc("/download", handlers.HandleDownload)
 	log.Println("Starting server on http://localhost:8080")
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
