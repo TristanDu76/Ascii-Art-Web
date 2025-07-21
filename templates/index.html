@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ASCII-art-web</title>
+        <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+
+    <body class="page--loading-screen">
+
+        <header class="header">
+            <div class="container shadow">
+                <div class="header__title-wrapper">
+                    <h1 class="header__main-title">ASCII-art</h1>
+                    <img id="logo" class="header__logo" src="../static/images/Chatsuke.png" alt="logo">
+                </div>
+            </div>
+        </header>
+        
+        <main class="main__page--background">
+            <audio id="MiaouSound" src="../static/Miaou.m4a" preload="auto"></audio>
+            
+            <section class="form container">
+                <form action="/" method="post" class="form__wrapper">
+                    <textarea name="text" id="text" class="form__input" placeholder="Insert the text to convert to ASCII-art" cols="30" rows="3" required></textarea>
+
+                    <div class="spacer"></div>
+                    <div class="form__label-wrapper">
+                        <div class="form__label-text">
+                            <label for="title" class="form__label">Choose your Style</label>
+                        </div>
+                        <div class="form__container-select">
+                            <select name="Style" id="Style" class="form__select">
+                                {{range .Style}}
+                                <option value="{{.}}">{{.}}</option>
+                                {{end}}
+                            </select>
+
+                    <select name="Color" id="Color" class="form__select">
+                        {{range .Color}}
+                        <option value="{{.}}">{{.}}</option>
+                        {{end}}
+                     </select>
+                     </div>
+                    </div>
+                    <div class="form__button-group">
+                        <button id="buttonplay" type="submit" class="form__button form__button--submit">GENERATE</button>
+                    </div>
+
+                    <div class="spacer"></div>
+                    
+                    <div class="form__result">
+                        <pre class="form__result-pre">{{.Result}}</pre>
+                </form>
+
+                <form action="/download" method="post" class = "form_downloader-wrapper">
+                    <input type="hidden" name="ascii" value="{{.Raw}}">
+                        <button type="submit" class="fa-solid fa-download fa-xl form__result-download" title="Télécharger le .txt"></button>
+                </form>
+                
+            </section>
+
+        <script src="../static/script.js"></script>
+        </main>
+
+        <footer class="footer container">
+
+            <div class="footer__content">
+                <h2 class="footer__title">Credits</h2>
+                <ul class="footer__credit-list">
+                    <li class="footer__element"><a href="https://zone01normandie.org/git/ldebey" target="_blank" class="footer__element--link">Louis-Adrien Debey</a></li>
+                    <li class="footer__element"><a href="https://zone01normandie.org/git/ldunis" target="_blank" class="footer__element--link">Lucas Dunis</a></li>
+                    <li class="footer__element"><a href="https://zone01normandie.org/git/tdumouli" target="_blank" class="footer__element--link">Tristan Dumoulin</a></li>
+                </ul>
+            </div>
+            <!-- <div class="footer__logo-container">
+                <img src="../static/images/Ichigo.png" alt="Image d'Ichigo" class="footer__logo default">
+                <img src="../static/images/ichigobakai.png" alt="Image d'Ichigo" class="footer__logo hover">
+            </div> -->
+        </footer>
+    </body>
+
+</html>
+
